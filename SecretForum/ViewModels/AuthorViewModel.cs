@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace SecretForum.Models
+namespace SecretForum.ViewModels
 {
-    public class Category
+    public class AuthorViewModel
     {
         public int ID { get; set; }
-        public string CategoryName { get; set; }
+        public string AuthorName { get; set; }
     }
 }
