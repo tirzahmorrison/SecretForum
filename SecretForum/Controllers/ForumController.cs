@@ -34,8 +34,6 @@ namespace SecretForum.Controllers
             {
                 return Ok(story);
             }
-        }
-
-       
+        } 
     }
 }
