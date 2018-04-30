@@ -14,9 +14,9 @@ namespace SecretForum.Controllers
     {
         private ForumContext db = new ForumContext();
 
-        [Route("stories")]
+        [Route("api/stories")]
         [HttpGet]
-        public IHttpActionResult GetAllStories([FromUri]string category, [FromUri]int? count)
+        public IHttpActionResult GetAllStories([FromUri]string category = null, [FromUri]int? count = null)
         {
             var query = db.Stories.Include(s => s.Category);
             if (string.IsNullOrWhiteSpace(category))
@@ -26,13 +26,13 @@ namespace SecretForum.Controllers
             if (count != null && count > 0) 
             {
                 query = query
-                    .OrderByDescending(s =>> s.ID)
-                    .Take(count);
+                    .OrderByDescending(s => s.ID)
+                    .Take((int)count);
             }
             return Ok(query.ToList());
         }
 
-        [Route("story/{id:int}")]
+        [Route("api/story/{id:int}")]
         [HttpGet]
         public IHttpActionResult GetOneStory(int id)
         {
@@ -47,7 +47,7 @@ namespace SecretForum.Controllers
             }
         } 
 
-        [Route("categories")]
+        [Route("api/categories")]
         [HttpGet]
         public IHttpActionResult GetAllCategories()
         {
