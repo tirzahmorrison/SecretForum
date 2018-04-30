@@ -2,9 +2,9 @@
     <h1>News App</h1>
     <button class="button">Create Story</button>
 </div>
-<div class="newstation">
-    <h2>News Station</h2>
-</div>
-<div class="categorybox">
-    <h2>Stories</h2>
+<div class="categorybox" ng-repeat="category in categories">
+    <h2>Stories under {{category.CategoryName}}</h2>
+    <!--<div class="storybox" ng-repeat="stories in stories">
+
+    </div>-->
 </div>

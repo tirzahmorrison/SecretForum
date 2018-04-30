@@ -4,7 +4,7 @@ app.config(function ($routeProvider) {
 
     $routeProvider.when('/', {
         templateUrl: '/Scripts/app/Views/Dashboard.html',
-        controller: 'otherController'
+        controller: 'dashboardController'
     });
 
     $routeProvider.when('/create', {
@@ -16,7 +16,20 @@ app.config(function ($routeProvider) {
 });
 
 app.controller('dashboardController' , ['$scope', '$http', function ($scope, $http) {
-    console.log('Apples')
+
+    const init = () => {
+        $scope.categories = [];
+
+        $http({
+            method: 'GET',
+            url: '/api/categories'
+        })
+            .then(response => response.data)
+            .then(data => $scope.categories = data);
+    };
+
+    init();
+
 }]);
 
 app.controller('createStoryController', ['$scope', '$http', function ($scope, $http) {

@@ -38,12 +38,6 @@ h1 {
     width: 150px;
 }
 
-.newstation {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
 .categorybox {
     display: flex;
     flex-direction: row;
