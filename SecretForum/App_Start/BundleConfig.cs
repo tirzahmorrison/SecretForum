@@ -25,8 +25,8 @@ namespace SecretForum
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                      "~/Scripts/angular.min.js",
-                      "~/Scripts/angular-route.min.js",
+                      "~/Scripts/angular.js",
+                      "~/Scripts/angular-route.js",
                       "~/Scripts/app/app.js"));
         }
     }
