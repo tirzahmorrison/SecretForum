@@ -16,12 +16,23 @@ namespace SecretForum.Controllers
 
         [Route("stories")]
         [HttpGet]
-        public IEnumerable<Story> GetAllStories()
+        public IHttpActionResult GetAllStories([FromUri]string category, [FromUri]int? count)
         {
-            return db.Stories.OrderBy(o => o.Headline).ToList();
+            var query = db.Stories.Include(s => s.Category);
+            if (string.IsNullOrWhiteSpace(category))
+            {
+                query = query.Where(s => s.Category.CategoryName == category);
+            }
+            if (count != null && count > 0) 
+            {
+                query = query
+                    .OrderByDescending(s =>> s.ID)
+                    .Take(count);
+            }
+            return Ok(query.ToList());
         }
 
-        [Route("stories/{id:int}")]
+        [Route("story/{id:int}")]
         [HttpGet]
         public IHttpActionResult GetOneStory(int id)
         {
@@ -35,5 +46,10 @@ namespace SecretForum.Controllers
                 return Ok(story);
             }
         } 
+
+        public IHttpActionResult GetAllCategories()
+        {
+            return Ok(db.Categories.ToList());
+        }
     }
 }
