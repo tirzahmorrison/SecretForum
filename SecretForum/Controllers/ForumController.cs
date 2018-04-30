@@ -47,6 +47,8 @@ namespace SecretForum.Controllers
             }
         } 
 
+        [Route("categories")]
+        [HttpGet]
         public IHttpActionResult GetAllCategories()
         {
             return Ok(db.Categories.ToList());
