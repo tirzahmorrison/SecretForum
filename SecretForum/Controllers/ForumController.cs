@@ -19,7 +19,7 @@ namespace SecretForum.Controllers
         public IHttpActionResult GetAllStories([FromUri]string category = null, [FromUri]int? count = null)
         {
             var query = db.Stories.Include(s => s.Category);
-            if (string.IsNullOrWhiteSpace(category))
+            if (!string.IsNullOrWhiteSpace(category))
             {
                 query = query.Where(s => s.Category.CategoryName == category);
             }
