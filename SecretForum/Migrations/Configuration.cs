@@ -27,11 +27,15 @@ namespace SecretForum.Migrations
             {
                 CategoryName = "Technology"
             };
+
+            var FanFiction = new Category { CategoryName = "FanFiction" };
+
             var categories = new List<Category>
             {
                 firstCategory,
                 new Category { CategoryName = "Wellness"},
                 new Category { CategoryName = "News"},
+                FanFiction
 
             };
             categories.ForEach(Category =>
@@ -50,7 +54,12 @@ namespace SecretForum.Migrations
             var stories = new List<Story>
             {
                 firstStory,
-                new Story { Headline = "Look What's Happening", Body = "Woah, cool story bro" }
+                new Story { Headline = "You won't believe what Harry Potter did to Malfoy", Body = "Hi Charley! Hi Wes!! :D", Category = FanFiction},
+                new Story { Headline = "Jurassic Sea, the Orca's Fight Back", Body = "Thank you Jim for a great fanfiction headline lol", Category = FanFiction},
+                new Story { Headline = "Han Solo is Back and He'll Make Your Castle Run", Body = "Woah, cool story bro", Category = FanFiction},
+                new Story { Headline = "Daenerys and Cersei Shhhhh", Body = "dun dun dunna nun nun nunna nunna dunna nun na", Category = FanFiction},
+                new Story { Headline = "Captain America and The Winter Soldier, the Hot and Steamy Behind the Scenes Romance", Body = "Bow chicka bow wow", Category = FanFiction},
+                new Story { Headline = "Elevensies?!? Aragorn and the Four Hobbits", Body = "one ring to rule them all", Category = FanFiction},
             };
             stories.ForEach(Story =>
             {
