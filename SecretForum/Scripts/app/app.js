@@ -34,6 +34,25 @@ app.controller('dashboardController' , ['$scope', '$http', function ($scope, $ht
             .then(data => {
                 console.log(data);
                 $scope.categories = data;
+                return $scope.categories;
+            })
+            .then(categories => {
+                categories.forEach(category => {
+                    category.stories = [];
+                    $http({
+                        method: 'GET',
+                        url: `/api/stories?category=${category.CategoryName}&count=5`
+                    })
+                        .then(response => {
+                            console.log(`Response for stories for ${category.CategoryName} recieved`);
+                            response.data
+                        })
+                        .then(data => {
+                            console.log(data);
+                            category.stories = data
+                        });
+                });
+                    
             });
     };
 
