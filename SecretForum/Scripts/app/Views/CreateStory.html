@@ -7,7 +7,7 @@
         <input type="text" name="name"><br><br>
         Category:
         <select>
-            <option>categories</option>    
+            <option ng-repeat="category in categories">{{category.CategoryName}}</option>    
         </select><br><br>
         Body:<br>
         <textarea class="bodybox">The body of your story here....</textarea>
