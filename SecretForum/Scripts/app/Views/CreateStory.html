@@ -1,16 +1,16 @@
-﻿<form action="">
+﻿<form>
     <fieldset>
         <legend>Story information:</legend>
         Headline:<br>
-        <input type="text" name="headline"><br>
+        <input type="text" name="headline" ng-model="story.headline"><br>
         Name:<br>
-        <input type="text" name="name"><br><br>
+        <input type="text" name="name" ng-model="story.author"><br><br>
         Category:
-        <select>
+        <select ng-model="story.category">
             <option ng-repeat="category in categories">{{category.CategoryName}}</option>    
         </select><br><br>
         Body:<br>
-        <textarea class="bodybox">The body of your story here....</textarea>
-        <input type="submit" value="Submit">
+        <textarea class="bodybox" ng-model="story.body"></textarea>
+        <input type="submit" value="Submit" ng-click="postStory()">
     </fieldset>
 </form>
