@@ -65,7 +65,7 @@ app.controller('dashboardController', ['$scope', '$http', function ($scope, $htt
 
 }]);
 
-app.controller('createStoryController', ['$scope', '$http', function ($scope, $http) {
+app.controller('createStoryController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
     const init = () => {
         $scope.categories = [];
@@ -86,11 +86,10 @@ app.controller('createStoryController', ['$scope', '$http', function ($scope, $h
             });
 
         $scope.postStory = () => {
-            console.warn('Not yet implemented!');
             console.log('Would post', $scope.story);
 
             // Check if object can be pushed
-            //const story = $scope.story;
+            const story = $scope.story;
             //if (!story.tagline
             //    || !story.body
             //    || !story.category) {
@@ -100,18 +99,20 @@ app.controller('createStoryController', ['$scope', '$http', function ($scope, $h
             $http({
                 method: 'POST',
                 url: '/api/story',
-                data: JSON.stringify($scope.story)
+                data: story
             })
                 .then(response => {
-                    if (response === 200) {
-                        return data;
+                    if (response.status === 200) {
+                        console.log('response.status === 200');
+                        return response.data;
                     }
                     else {
-                        console.error('Bad response');
+                        console.error('Bad response', response);
                     }
                 })
                 .then(data => {
-                    window.location = `/stories/${data.ID}` // TODO: Redirect through angular?
+                    //window.location = `/#!/stories/${data}` // TODO: Redirect through angular?
+                    $location.url(`/stories/${data}`)
                 });
 
         };

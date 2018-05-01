@@ -2,15 +2,15 @@
     <fieldset>
         <legend>Story information:</legend>
         Headline:<br>
-        <input type="text" name="headline" ng-model="story.headline"><br>
+        <input type="text" name="headline" ng-model="story.Headline"><br>
         Name:<br>
-        <input type="text" name="name" ng-model="story.author"><br><br>
+        <input type="text" name="name" ng-model="story.Author"><br><br>
         Category:
-        <select ng-model="story.category">
+        <select ng-model="story.Category">
             <option ng-repeat="category in categories">{{category.CategoryName}}</option>    
         </select><br><br>
         Body:<br>
-        <textarea class="bodybox" ng-model="story.body"></textarea>
+        <textarea class="bodybox" ng-model="story.Body"></textarea>
         <input type="submit" value="Submit" ng-click="postStory()">
     </fieldset>
 </form>
