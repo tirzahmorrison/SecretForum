@@ -50,7 +50,8 @@ app.controller('dashboardController', ['$scope', '$http', function ($scope, $htt
                     })
                         .then(response => {
                             console.log(`Response for stories for ${category.CategoryName} recieved`);
-                            response.data
+                            console.log({ response, category });
+                            return response.data
                         })
                         .then(data => {
                             console.log(data);
