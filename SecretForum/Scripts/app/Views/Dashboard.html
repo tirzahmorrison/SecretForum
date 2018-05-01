@@ -5,6 +5,7 @@
 <div class="categorybox" ng-repeat="category in categories">
     <h2>Stories under {{category.CategoryName}}</h2>
     <div class="storybox" ng-repeat="story in category.stories">
-        <p>{{story}}</p>
+        <h3>{{story.Headline}}</h3>
+        <p>{{story.Body}}</p>
     </div>
 </div>
