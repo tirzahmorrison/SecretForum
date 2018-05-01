@@ -16,9 +16,16 @@ namespace SecretForum.Migrations
 
         protected override void Seed(SecretForum.Context.ForumContext context)
         {
-            var newAuthor = new Author
+            var firstAuthor = new Author
             {
                 AuthorName = "Chuck",
+            };
+            context.Authors.AddOrUpdate(c => c.AuthorName, firstAuthor);
+            context.SaveChanges();
+
+            var newAuthor = new Author
+            {
+                AuthorName = "Jared",
             };
             context.Authors.AddOrUpdate(c => c.AuthorName, newAuthor);
             context.SaveChanges();
@@ -29,13 +36,18 @@ namespace SecretForum.Migrations
             };
 
             var FanFiction = new Category { CategoryName = "FanFiction" };
+            var Food = new Category { CategoryName = "Food" };
+            var Gardening = new Category { CategoryName = "Gardening" };
+
 
             var categories = new List<Category>
             {
                 firstCategory,
                 new Category { CategoryName = "Wellness"},
                 new Category { CategoryName = "News"},
-                FanFiction
+                FanFiction,
+                Food,
+                Gardening,
 
             };
             categories.ForEach(Category =>
@@ -60,6 +72,8 @@ namespace SecretForum.Migrations
                 new Story { Headline = "Daenerys and Cersei Shhhhh", Body = "dun dun dunna nun nun nunna nunna dunna nun na", Category = FanFiction},
                 new Story { Headline = "Captain America and The Winter Soldier, the Hot and Steamy Behind the Scenes Romance", Body = "Bow chicka bow wow", Category = FanFiction},
                 new Story { Headline = "Elevensies?!? Aragorn and the Four Hobbits", Body = "one ring to rule them all", Category = FanFiction},
+                new Story { Headline = "Tasty Recipes", Body = "yum", Category = Food},
+                new Story { Headline = "Grow the Best Tomatoes", Body = "Red and jouicy", Category = Gardening},
             };
             stories.ForEach(Story =>
             {
