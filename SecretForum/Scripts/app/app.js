@@ -66,8 +66,61 @@ app.controller('dashboardController', ['$scope', '$http', function ($scope, $htt
 }]);
 
 app.controller('createStoryController', ['$scope', '$http', function ($scope, $http) {
-    console.log('Bananas')
+
+    const init = () => {
+        $scope.categories = [];
+        $scope.story = {};
+
+        $http({
+            method: 'GET',
+            url: '/api/categories'
+        })
+            .then(response => {
+                console.log('Response for categories recieved');
+                return response.data;
+            })
+            .then(data => {
+                console.log(data);
+                $scope.categories = data;
+                return $scope.categories;
+            });
+
+        $scope.postStory = () => {
+            console.warn('Not yet implemented!');
+            console.log('Would post', $scope.story);
+
+            // Check if object can be pushed
+            //const story = $scope.story;
+            //if (!story.tagline
+            //    || !story.body
+            //    || !story.category) {
+            //    // TODO: Decided to not add user validation yet
+            //}
+
+            $http({
+                method: 'POST',
+                url: '/api/story',
+                data: JSON.stringify($scope.story)
+            })
+                .then(response => {
+                    if (response === 200) {
+                        return data;
+                    }
+                    else {
+                        console.error('Bad response');
+                    }
+                })
+                .then(data => {
+                    window.location = `/stories/${data.ID}` // TODO: Redirect through angular?
+                });
+
+        };
+    };
+
+    init();
+
 }]);
+
 app.controller('viewStoryController', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
     console.log('oranges')
     $http({
