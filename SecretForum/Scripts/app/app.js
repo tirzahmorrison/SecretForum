@@ -111,7 +111,7 @@ app.controller('createStoryController', ['$scope', '$http', function ($scope, $h
                     }
                 })
                 .then(data => {
-                    window.location = `/stories/${data.ID}`
+                    window.location = `/stories/${data.ID}` // TODO: Redirect through angular?
                 });
 
         };
