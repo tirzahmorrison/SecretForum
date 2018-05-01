@@ -12,10 +12,15 @@ app.config(function ($routeProvider) {
         controller: 'createStoryController'
     });
 
+    $routeProvider.when('/stories/:id', {
+        templateUrl: '/Scripts/app/Views/StoryPage.html',
+        controller: 'viewStoryController'
+    });
+
     $routeProvider.otherwise({ redirectTo: '/' });
 });
 
-app.controller('dashboardController' , ['$scope', '$http', function ($scope, $http) {
+app.controller('dashboardController', ['$scope', '$http', function ($scope, $http) {
     console.log('dashboardController');
 
     const init = () => {
@@ -52,7 +57,7 @@ app.controller('dashboardController' , ['$scope', '$http', function ($scope, $ht
                             category.stories = data
                         });
                 });
-                    
+
             });
     };
 
@@ -62,4 +67,13 @@ app.controller('dashboardController' , ['$scope', '$http', function ($scope, $ht
 
 app.controller('createStoryController', ['$scope', '$http', function ($scope, $http) {
     console.log('Bananas')
+}]);
+app.controller('viewStoryController', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
+    console.log('oranges')
+    $http({
+        method: "GET",
+        url: `/api/story/${$routeParams.id}`
+    }).then(resp => {
+        $scope.story = resp.data
+    })
 }]);
